@@ -1,0 +1,77 @@
+﻿<div class="modal-header">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="pull-left">
+                <h3 style="margin: 0;">
+                    <strong>{{enumDescriptions.get('RoadConditionTypes',vm.mapObject.roadConditionType)}}</strong> <br/>
+                    <small ng-show="vm.showHazardField(vm.mapObject.roadConditionType)">{{enumDescriptions.get('HazardTypes',vm.mapObject.condition)}}</small>
+                    <small ng-show="vm.showCollisionField(vm.mapObject.roadConditionType)">{{enumDescriptions.get('CollisionTypes',vm.mapObject.condition)}}</small>
+                    <small ng-show="vm.showFloodingField(vm.mapObject.roadConditionType)">{{enumDescriptions.get('FloodingTypes',vm.mapObject.condition)}}</small>
+                    <small ng-show="vm.showRoadworksField(vm.mapObject.roadConditionType)">Duration: {{vm.mapObject.condition}}</small>
+                    <small ng-show="vm.showClosureField(vm.mapObject.roadConditionType)">{{vm.mapObject.condition}}</small>
+                </h3>
+            </div>
+            <div class="form-group pull-right">
+                <button class="btn btn-xs" ng-click="vm.cancel()">
+                    <span class="fa fa-times"></span>
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal-body" ng-class="vm.getMarkerStyle()">
+    <div class="row">
+        <div class="col-md-12">
+            <fieldset ng-show="vm.showSpecialEventField(vm.mapObject.roadConditionType)">
+                <legend class="modal-legend">
+                    <img ng-src="../../../Content/images/markers/{{vm.modalData.imagePath}}" style="max-width: 34px; padding: 5px;" /> Event Details
+                </legend>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <div class="col-md-12 text-center">
+                            <h2 style="margin: 0;"><small>{{vm.mapObject.condition}}</small></h2>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset ng-show="vm.mapObject.conditionEffects.length != 0">
+                <legend class="modal-legend">
+                    <img ng-src="../../../Content/images/markers/{{vm.modalData.imagePath}}" style="max-width: 34px; padding: 5px;"/> States and Restrictions
+                </legend>
+                <div class="col-md-offset-2">
+                    <ul>
+                        <li style="padding: 5px 0;" ng-repeat="condition in vm.mapObject.conditionEffects track by $index">
+                            {{enumDescriptions.get('ConditionEffectTypes',condition.effect)}}
+                        </li>
+                    </ul>
+                </div>
+                
+            </fieldset>
+            <fieldset>
+                <legend class="modal-legend">
+                    <img ng-src="../../../Content/images/markers/{{vm.modalData.imagePath}}" style="max-width: 34px;padding: 5px;" /> Location Information
+                </legend>
+                <div class="row">
+                    <div class="form-group col-md-12">
+                        <label class="control-label col-md-2">Road</label>
+                        <div class="col-md-10">
+                            <p>{{vm.mapObject.road}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label class="control-label col-md-2">Area</label>
+                        <div class="col-md-10">
+                            <p>{{vm.mapObject.area}}</p>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-12" ng-show="vm.mapObject.additionalInformation != null">
+                        <label class="control-label col-md-2">Additional Details</label>
+                        <div class="col-md-10">
+                            <p>{{vm.mapObject.additionalInformation}}</p>
+                        </div>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+    </div>
+</div>

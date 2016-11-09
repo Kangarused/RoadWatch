@@ -1,0 +1,29 @@
+﻿<div class="row fill-height">
+    <div class="fill-height">
+        <div class="map-panel fill-height" ng-if="vm.showMap">
+            <ui-gmap-google-map 
+                center="vm.mapOptions.center"
+                zoom="vm.mapOptions.zoom">
+                <ui-gmap-marker 
+                    ng-repeat="item in vm.markers"
+                    coords="item.marker.coords"
+                    options="item.marker.options"
+                    idkey="item.marker.id"
+                    events="vm.markerEvents">
+                </ui-gmap-marker>
+
+                <!-- Editing Paths -->
+                <ui-gmap-polylines models="vm.polylines"
+                                   path="'path'"
+                                   stroke="'stroke'"
+                                   draggable="'draggable'"
+                                   clickable="'clickable'"
+                                   editable="'editable'"
+                                   visible="'static'"
+                                   static="'static'"
+                                   events="vm.polylineEvent">
+                </ui-gmap-polylines>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>

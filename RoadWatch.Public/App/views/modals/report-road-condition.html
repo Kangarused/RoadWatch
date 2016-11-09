@@ -1,0 +1,121 @@
+﻿<div class="modal-header">
+    <h4 class="modal-title">Report Road Condition</h4>
+</div>
+<div class="modal-body">
+    <div class="row">
+        <div class="col-md-12 form-horizontal">
+            <form name="reportRoadCondition" validation-schema schema="ReportRoadCondition">
+                <fieldset>
+                    <legend class="modal-legend">Road Condition Information</legend>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4 required-field">Road Condition</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="roadCondition"
+                                        ng-model="vm.newReport.roadConditionType"
+                                        ng-options="condition as enumDescriptions.get('RoadConditionTypes',condition) for condition in vm.conditionTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showHazardTypes()">
+                            <label class="control-label col-md-4 required-field">Hazard Type</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="impassableType"
+                                        ng-model="vm.newReport.condition"
+                                        ng-options="enumDescriptions.get('HazardTypes',type) as enumDescriptions.get('HazardTypes',type) for type in vm.hazardTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showCollisionTypes()">
+                            <label class="control-label col-md-4 required-field">Collision Type</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="collisionType"
+                                        ng-model="vm.newReport.condition"
+                                        ng-options="enumDescriptions.get('CollisionTypes',type) as enumDescriptions.get('CollisionTypes',type) for type in vm.collisionTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showFloodingTypes()">
+                            <label class="control-label col-md-4 required-field">Flood Severity</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="floodSeverity"
+                                        ng-model="vm.newReport.condition"
+                                        ng-options="enumDescriptions.get('FloodingTypes',type) as enumDescriptions.get('FloodingTypes',type) for type in vm.floodingTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showSpecialEventField()">
+                            <label class="control-label col-md-4 required-field">Event Details</label>
+                            <div class="col-md-8">
+                                <textarea class="v-resize form-control" name="specialEventDetails" ng-model="vm.newReport.condition"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="modal-legend">Location Information</legend>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4 required-field">Road</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="road" ng-model="vm.newReport.road"/>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4 required-field">Area</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="area" ng-model="vm.newReport.area"/>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="modal-legend">Additional Information</legend>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4">Information</label>
+                            <div class="col-md-8">
+                                <textarea class="v-resize form-control" ng-model="vm.newReport.additionalInformation"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="modal-legend">Contact Information <br/> <small>Not Required. All information will be kept strictly confidential.</small></legend>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4">Name</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="name" ng-model="vm.newReport.contactName" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4">Email</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="email" ng-model="vm.newReport.contactEmail" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4">Phone</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="email" ng-model="vm.newReport.contactPhone" />
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <button type="button" class="btn btn-sm btn-primary" ng-click="vm.sendReport(reportRoadCondition)"><span class="fa fa-check"></span> Send Report</button>
+    <button type="button" class="btn btn-sm btn-default" ng-click="vm.cancel()"><span class="fa fa-times"></span> Cancel</button>
+</div>

@@ -1,0 +1,9 @@
+﻿[
+  {
+    "outputFile": "Content/styles/road-watch-public.css",
+    "inputFile": "Content/styles/road-watch-public.scss",
+    "options": {
+      "sourceMap": true
+    }
+  }
+]

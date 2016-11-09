@@ -1,0 +1,117 @@
+﻿<br/>
+<!-- SEARCH FILTER -->
+<div class="panel panel-primary">
+    <div class="panel-heading clickable" ng-click="vm.searchFilterCollapsed = !vm.searchFilterCollapsed">
+        <h4>
+            <strong>
+                <span class="fa" ng-class="{'fa-compress': !vm.searchFilterCollapsed,
+                                'fa-expand': vm.searchFilterCollapsed}"></span> Search Filter
+            </strong>
+        </h4>
+    </div>
+    <div class="panel-body" uib-collapse="vm.searchFilterCollapsed">
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Title Contains</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" ng-model="vm.cachedFilter.title"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Body Contains</label>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control" ng-model="vm.cachedFilter.content" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Initial Date</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" datepicker ng-model="vm.cachedFilter.initialDate" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Final Date</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" datepicker ng-model="vm.cachedFilter.finalDate" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-default" ng-click="vm.resetFilter()">
+                                <span class="fa fa-refresh"></span> Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-default" ng-click="vm.getData()">
+                                <span class="fa fa-search"></span> Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- PAGINATION -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <h3>
+                <strong>Announcements</strong>
+            </h3>
+        </div>
+        <ul class="pull-right" uib-pagination total-items="vm.dataSet.numRecords" ng-model="vm.cachedFilter.page" items-per-page="vm.cachedFilter.pageSize" ng-change="vm.getData()"></ul>
+    </div>
+</div>
+
+<!-- DISPLAY PANEL -->
+<div class="panel panel-default" ng-repeat="item in vm.dataSet.items">
+    <div class="panel-heading">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>
+                    <strong>{{item.title}}</strong>
+                    <br/>
+                    <small>{{item.createdTime | date:'fullDate'}}</small>
+                </h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <p>
+                    {{item.content}}
+                </p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="pull-right">
+                    <button class="btn btn-sm btn-success" ng-click="vm.editAnnouncement(item)">
+                        <span class="fa fa-pencil"></span> Edit
+                    </button>
+                    <button class="btn btn-sm btn-danger" ng-click="vm.deleteAnnouncement(item)">
+                        <span class="fa fa-trash"></span> Delete
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- PAGINATION -->
+<div class="row">
+    <div class="col-md-12">
+        <ul class="pull-right" uib-pagination total-items="vm.dataSet.numRecords" ng-model="vm.cachedFilter.page" items-per-page="vm.cachedFilter.pageSize" ng-change="vm.getData()"></ul>
+    </div>
+</div>
+<div style="padding-bottom: 70px;"></div>

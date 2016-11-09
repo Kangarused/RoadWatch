@@ -1,0 +1,84 @@
+﻿<br/>
+<div class="row">
+    <div class="col-md-12">
+        <ul class="horizontal-slide">
+            <li class="span2 marker-btn" ng-repeat="marker in vm.markerTiles">
+                <a href ng-click="vm.setMarkerActive(marker.id)" class="" ng-class="vm.getMarkerClass(marker.id)">
+                    <div>
+                        <p class="marker-btn-label">{{marker.name}}</p><br/>
+                        <img class="map-marker-tile" ng-src="../../Content/images/markers/{{marker.filePath}}" alt=""/>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>
+<hr class="hr-no-margin"/>
+<div class="row map-panel" track-map-changes>
+    <div class="col-md-12 fill-height">
+        <div class="fill-height" ng-if="vm.showMap">
+            <!-- Angular Google Maps -->
+            <ui-gmap-google-map
+                center="vm.mapOptions.center"
+                zoom="vm.mapOptions.zoom"
+                events="vm.mapEvents">
+
+                <!-- Clear Button Custom Control -->
+                <ui-gmap-map-control position="RIGHT_TOP" controller="roadMapController">
+                    <div class="map-control">
+                        <!-- Desktop / Tablet -->
+                        <button class="btn btn-sm btn-danger btn-block hidden-xs" ng-click="vm.resetMapObjects()">
+                            <span class="fa fa-refresh"></span> Reset Changes
+                        </button>
+
+                        <!-- Mobile -->
+                        <button class="btn btn-sm btn-danger btn-block visible-xs" ng-click="vm.resetMapObjects()">
+                            <span class="fa fa-refresh"></span> Reset
+                        </button>
+                    </div>
+                </ui-gmap-map-control>
+
+                <!-- Save Button Custom Control -->
+                <ui-gmap-map-control
+                    position="RIGHT_TOP">
+                    <div class="map-control">
+                        <!-- Desktop / Tablet -->
+                        <button class="btn btn-sm btn-success btn-block hidden-xs" ng-click="vm.saveObjects()">
+                            <span class="fa fa-save"></span> Save Changes
+                        </button>
+
+                        <!-- Mobile -->
+                        <button class="btn btn-sm btn-success btn-block visible-xs" ng-click="vm.saveObjects()">
+                            <span class="fa fa-save"></span> Save
+                        </button>
+                    </div>
+                </ui-gmap-map-control>
+
+                <!-- Markers -->
+                <ui-gmap-marker
+                    ng-repeat="item in vm.updateCollection.collection"
+                    coords="item.marker.coords"
+                    options="item.marker.options"
+                    events="vm.markerEvents"
+                    idkey="item.marker.id">
+                    <ui-gmap-polyline ng-repeat="path in item.paths"
+                                      idKey="path.id"
+                                      path="path.path"
+                                      stroke="path.stroke"
+                                      visible="path.visible"
+                                      clickable="path.clickable"
+                                      draggable="path.draggable"
+                                      editable="path.editable"
+                                      static="path.static"
+                                      events="vm.polylineEvent">
+                    </ui-gmap-polyline>
+                </ui-gmap-marker>
+
+                <!-- Polylines -->
+                <div ng-repeat="item in vm.updateCollection.collection">
+                    
+                </div>
+            </ui-gmap-google-map>
+        </div>
+    </div>
+</div>

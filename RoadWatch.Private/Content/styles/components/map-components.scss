@@ -1,0 +1,94 @@
+﻿// Map Classes
+.map-panel {
+    position: relative;
+    height: calc(100% - 158px);
+    width: 100%;
+    margin: 0 auto;
+}
+
+.angular-google-map-container { 
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+}
+
+.map-control {
+    max-width: 190px;
+    width: 190px;
+    padding: 15px;
+    padding-bottom: 0px;
+}
+
+.map-control button {
+    font-size: 14px;
+}
+
+// Map Marker Controls
+ul.horizontal-slide {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    white-space: nowrap;
+    overflow-x: auto;
+    text-align:center;
+}
+
+ul.horizontal-slide li[class*="span"] {
+    display: inline-block;
+    float: none;
+}
+
+ul.horizontal-slide li[class*="span"]:first-child {
+    margin-left: 0;
+}
+
+.marker-btn-label {
+    margin-bottom: -5px;
+    font-weight: bold;
+}
+
+.marker-btn {
+    width: 100px;
+    border: none;
+    border-bottom: 5px solid white;
+}
+
+.marker-btn a {
+    text-decoration: none;
+}
+
+.marker-btn:hover {
+    border-bottom: 5px solid darken($btn-default-bg, 10%);
+}
+
+.marker-btn a:hover img {
+    //opacity: 1 !important;
+}
+
+.marker-btn-inactive img {
+    opacity: 0.5;
+}
+
+// Media Queries
+@media (max-width: 767px) {
+
+    .map-panel {
+        height: calc(100% - 128px);
+    }
+
+    .map-marker-tile {
+        max-height: 50px !important;
+    }
+
+    .map-control {
+        width: 100px;
+        padding: 15px;
+        padding-bottom: 0px;
+    }
+
+    .map-control button {
+        font-size: 14px;
+    }
+}

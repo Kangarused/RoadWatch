@@ -1,0 +1,186 @@
+﻿<br/>
+<!-- SEARCH FILTER -->
+<div class="panel panel-primary">
+    <div class="panel-heading clickable" ng-click="vm.searchFilterCollapsed = !vm.searchFilterCollapsed">
+        <h4>
+            <strong>
+                <span class="fa" ng-class="{'fa-compress': !vm.searchFilterCollapsed,
+                                'fa-expand': vm.searchFilterCollapsed}"></span> Search Filter
+            </strong>
+        </h4>
+    </div>
+    <div class="panel-body" uib-collapse="vm.searchFilterCollapsed">
+        <div class="row">
+            <form class="form-horizontal">
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label col-md-3">Road Condition</label>
+                        <div class="col-md-9">
+                            <select class="form-control input-sm"
+                                    ng-model="vm.cachedFilter.roadConditionType"
+                                    ng-options="condition as enumDescriptions.get('RoadConditionTypes',condition) for condition in vm.conditionTypes">
+                                <option value="" selected="selected"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="vm.showCollisionTypeField()">
+                        <label class="control-label col-md-3">Collision Type</label>
+                        <div class="col-md-9">
+                            <select class="form-control input-sm"
+                                    ng-model="vm.cachedFilter.conditionType"
+                                    ng-options="condition as enumDescriptions.get('CollisionTypes',condition) for condition in vm.collisionTypes">
+                                <option value="" selected="selected"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="vm.showHazardTypeField()">
+                        <label class="control-label col-md-3">Hazard Type</label>
+                        <div class="col-md-9">
+                            <select class="form-control input-sm"
+                                    ng-model="vm.cachedFilter.conditionType"
+                                    ng-options="condition as enumDescriptions.get('HazardTypes',condition) for condition in vm.hazardTypes">
+                                <option value="" selected="selected"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group" ng-show="vm.showSpecialEventField()">
+                        <label class="control-label col-md-3">Event Details</label>
+                        <div class="col-md-9">
+                            <input class="form-control" ng-model="vm.cachedFilter.conditionType"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Road</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="vm.cachedFilter.road"/>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-md-2">Area</label>
+                        <div class="col-md-10">
+                            <input type="text" class="form-control" ng-model="vm.cachedFilter.area"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-default" ng-click="vm.resetFilter()">
+                                <span class="fa fa-refresh"></span> Reset
+                            </button>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-md-12">
+                            <button class="btn btn-block btn-default" ng-click="vm.getData()">
+                                <span class="fa fa-search"></span> Search
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- PAGINATION -->
+<div class="row">
+    <div class="col-md-12">
+        <div class="pull-left">
+            <h3><strong>Public Reports</strong>
+            </h3>
+        </div>
+        <ul class="pull-right" uib-pagination total-items="vm.dataSet.numRecords" ng-model="vm.cachedFilter.page" items-per-page="vm.cachedFilter.pageSize" ng-change="vm.pageChanged()"></ul>
+    </div>
+</div>
+
+<!-- DISPLAY PANEL -->
+<div class="row">
+    <div class="col-sm-6 col-md-4 col-lg-3 report-block" ng-repeat="report in vm.dataSet.items">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h1>
+                            <div class="pull-left" style="padding-right: 15px;">
+                                <img ng-src="../../Content/images/markers/{{vm.getIcon(report.roadConditionType)}}" height="50px"/>
+                            </div>
+                            <div class="pull-left text-left">
+                                <span>
+                                    <strong>{{vm.getRoadConditionText(report)}}</strong><br />
+                                    <small class="truncate clickable"
+                                        uib-popover="{{report.condition}}"
+                                        popover-append-to-body="true"
+                                        popover-is-open="report.conditionOpen"
+                                        ng-click="report.conditionOpen = !report.conditionOpen">
+                                        {{vm.truncateCondition(report.condition)}}
+                                    </small>
+                                </span>
+                            </div>
+                        </h1>
+                    </div>
+                </div>
+                <hr/>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>
+                            <p>Roads</p>
+                        </strong>
+                    </div>
+                    <div class="col-md-12">
+                        <p>{{report.road}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>
+                            <p>Area</p>
+                        </strong>
+                    </div>
+                    <div class="col-md-12">
+                        <p>{{report.area}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>
+                            <p>Date</p>
+                        </strong>
+                    </div>
+                    <div class="col-md-12">
+                        <p>{{report.reportDate | date:'EEE dd MMM yyyy'}}</p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <strong>
+                            <p>Additional Information</p>
+                        </strong>
+                    </div>
+                    <div class="col-md-12" style="">
+                        <p class="text-wrap truncate clickable" ng-show="report.additionalInformation != null"
+                           uib-popover="{{report.additionalInformation}}"
+                           popover-append-to-body="true"
+                           popover-is-open="report.popoverIsOpen" 
+                           ng-click="report.popoverIsOpen = !report.popoverIsOpen">
+                            {{report.additionalInformation}}
+                        </p>
+                        <p ng-show="report.additionalInformation == null">
+                            No additional information provided
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- PAGINATION -->
+<div class="row">
+    <div class="col-md-12">
+        <ul class="pull-right" uib-pagination total-items="vm.dataSet.numRecords" ng-model="vm.cachedFilter.page" items-per-page="vm.cachedFilter.pageSize" ng-change="vm.pageChanged()"></ul>
+    </div>
+</div>
+<div style="padding-bottom: 70px;"></div>

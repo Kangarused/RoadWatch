@@ -1,0 +1,18 @@
+﻿.report-block {
+    height: 470px;
+    padding-bottom: 15px;
+}
+
+.report-block h1 {
+    font-size: 18px;
+}
+
+.report-block .panel, .report-block .panel-heading { 
+    height: 100%;
+}
+
+@media (max-width: 995px) {
+    .report-block  {
+        height: auto;
+    }
+}

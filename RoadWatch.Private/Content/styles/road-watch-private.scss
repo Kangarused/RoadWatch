@@ -1,0 +1,40 @@
+﻿$navbar-inverse-bg: #006666;
+$brand-primary: $navbar-inverse-bg;
+@import "../../../RoadWatch.Common/Content/styles/bootstrap/bootstrap.scss";
+@import "../../../RoadWatch.Common/Content/styles/bootswatch/_bootswatch.scss";
+@import "../../../RoadWatch.Common/Content/styles/fontawesome/font-awesome.scss";
+@import "../../../RoadWatch.Common/Content/styles/bootstrap/bootstrap-social.scss";
+
+html {   
+  position: relative;
+  height: 100%;
+}
+    
+body { 
+    height: 100%;
+    padding-top: 181px;
+    padding-bottom: 44px;
+}
+  
+.body-wrapper {
+    height: 100%; 
+}
+ 
+.viewport {
+    height: 100%;
+}
+
+// Media Queries  
+@media (max-width: 767px) {
+    body {
+        padding-top: 45px;
+    }
+}
+
+@import "components/header-components.scss";
+@import "components/footer-components.scss";
+@import "components/common-style-components.scss";
+@import "components/map-components.scss";
+@import "components/navigation-components.scss";
+@import "components/report-block-components.scss";
+@import "components/modal-components.scss";

@@ -1,0 +1,43 @@
+﻿//Modals
+.modal {
+  text-align: center;
+  padding: 0!important;
+}
+
+.modal:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+  margin-right: -4px;
+}
+
+.modal-dialog {
+  display: inline-block;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.crash-modal .modal-content {
+    border: 6px ridge #cc1f3a;
+}
+
+.hazard-modal .modal-content {
+    border: 6px ridge #cc4800;
+}
+
+.flooding-modal .modal-content {
+    border: 6px ridge #0f70b4;
+}
+
+.closed-modal .modal-content {
+    border: 6px ridge #272727;
+}
+
+.specialevent-modal .modal-content {
+    border: 6px ridge #65408d;
+}
+
+.roadworks-modal .modal-content {
+    border: 6px ridge #d88514;
+}

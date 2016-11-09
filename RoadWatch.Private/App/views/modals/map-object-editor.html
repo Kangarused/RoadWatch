@@ -1,0 +1,173 @@
+﻿<div class="modal-body" ng-class="vm.getMarkerStyle()">
+    <div class="row">
+        <div class="col-md-12">
+            <form name="reportRoadCondition" validation-schema schema="ReportRoadCondition">
+                <fieldset>
+                    <legend class="modal-legend">
+                        <img ng-src="../../../Content/images/markers/{{vm.modalData.imagePath}}" style="max-width: 34px; padding: 5px;"/> Road Condition Information
+                    </legend>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4 required-field">Road Condition</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="roadCondition"
+                                        disabled="disabled"
+                                        ng-model="vm.mapObject.roadConditionType"
+                                        ng-options="condition as enumDescriptions.get('RoadConditionTypes',condition) for condition in vm.conditionTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showHazardField(vm.mapObject.roadConditionType)">
+                            <label class="control-label col-md-4 required-field">Hazard Type</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="impassableType"
+                                        ng-model="vm.mapObject.condition"
+                                        ng-options="type as enumDescriptions.get('HazardTypes',type) for type in vm.hazardTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showFloodingField(vm.mapObject.roadConditionType)">
+                            <label class="control-label col-md-4 required-field">Flood Severity</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="floodSeverity"
+                                        ng-model="vm.mapObject.condition"
+                                        ng-options="type as enumDescriptions.get('FloodingTypes',type) for type in vm.floodingTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showCollisionField(vm.mapObject.roadConditionType)">
+                            <label class="control-label col-md-4 required-field">Collision Type</label>
+                            <div class="col-md-8">
+                                <select class="form-control"
+                                        name="collisionType"
+                                        ng-model="vm.mapObject.condition"
+                                        ng-options="type as enumDescriptions.get('CollisionTypes',type) for type in vm.collisionTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showSpecialEventField(vm.mapObject.roadConditionType)">
+                            <label class="control-label col-md-4 required-field">Event Details</label>
+                            <div class="col-md-8">
+                                <textarea class="form-control v-resize" name="specialEventDetails" ng-model="vm.mapObject.condition"></textarea>
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12" ng-if="vm.showCommonField(vm.mapObject.roadConditionType)">
+                            <label class="control-label col-md-4 required-field">{{vm.getCommonFieldText(vm.mapObject.roadConditionType)}}</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="commonType" ng-model="vm.mapObject.condition"/>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <fieldset>
+                    <legend class="modal-legend">
+                        <img ng-src="../../../Content/images/markers/{{vm.modalData.imagePath}}" style="max-width: 34px; padding: 5px;"/> Road State and Restrictions
+                    </legend>
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+                            <th class="col-xs-11">State or Restriction</th>
+                            <th class="col-xs-1">
+                                <button class="btn btn-sm btn-default" ng-click="vm.addConditionEffect()">
+                                    <span class="fa fa-plus"></span>
+                                </button>
+                            </th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-if="vm.mapObject.conditionEffects.length == 0">
+                            <td colspan="2" style="text-align: center;">
+                                Add a road state / restriction
+                            </td>
+                        </tr>
+                        <tr ng-if="vm.mapObject.conditionEffects.length > 0" ng-repeat="condition in vm.mapObject.conditionEffects track by $index">
+                            <td>
+                                <select class="form-control" ng-model="condition.effect" ng-options="type as enumDescriptions.get('ConditionEffectTypes',type) for type in vm.effectTypes">
+                                    <option value="" selected="selected"></option>
+                                </select>
+                            </td>
+                            <td>
+                                <button class="btn btn-sm btn-default" ng-click="vm.removeConditionEffect($index)">
+                                    <span class="fa fa-minus"></span>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend class="modal-legend">
+                        <img ng-src="../../../Content/images/markers/{{vm.modalData.imagePath}}" style="max-width: 34px;padding: 5px;" /> Location Information
+                    </legend>
+                    <div class="row">
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4 required-field">Road</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="road" ng-model="vm.mapObject.road" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4 required-field">Area</label>
+                            <div class="col-md-8">
+                                <input class="form-control" name="area" ng-model="vm.mapObject.area" />
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="control-label col-md-4">Additional Details</label>
+                            <div class="col-md-8">
+                                <textarea class="v-resize form-control" ng-model="vm.mapObject.additionalInformation"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <button class="btn btn-sm btn-block btn-default"
+                        ng-click="vm.lockObject()">
+                    <span class="fa fa-lock"></span> {{vm.getWindowLockText()}}
+                </button>
+            </div>
+            
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <button class="btn btn-sm btn-block btn-default"
+                        ng-click="vm.highlightRoad()">
+                    <span class="fa fa-paint-brush"></span> Highlight Affected Road
+                </button>
+            </div>
+            
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <button class="btn btn-sm btn-block btn-default"
+                        ng-click="vm.removeObject()">
+                    <span class="fa fa-trash"></span> Remove Marker
+                </button>
+            </div>
+            
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <button class="btn btn-sm btn-block btn-default"
+                        ng-click="vm.cancel()">
+                    <span class="fa fa-save"></span> Save Changes
+                </button>
+            </div>
+            
+        </div>
+    </div>
+</div>

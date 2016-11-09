@@ -1,0 +1,24 @@
+﻿.road-report-block {
+    height: 470px;
+    padding-bottom: 15px;
+}
+
+.report-block {
+    height: 430px;
+    padding-bottom: 15px;
+}
+
+.report-block h1, .road-report-block h1 {
+    font-size: 18px;
+}
+
+.report-block .panel, .report-block .panel-heading,
+.road-report-block .panel, .road-report-block .panel-heading { 
+    height: 100%;
+}
+
+@media (max-width: 995px) {
+    .road-report-block  {
+        height: auto;
+    }
+}
