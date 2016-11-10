@@ -12,7 +12,6 @@ var RoadWatch;
                 this.cachedFilter = { page: 1, pageSize: 10, orderDirection: "dsc" };
                 this.searchFilterCollapsed = true;
                 $scope.vm = this;
-                window['test'] = this;
                 this.getData();
                 this.setupSignalrConnection();
             }
@@ -21,6 +20,8 @@ var RoadWatch;
                 this.signalrDataService.setupConnection();
                 var proxyTest = this.signalrDataService.proxy;
                 proxyTest.on('announcementsUpdated', function (event) {
+                    _this.cachedFilter.initialDate = null;
+                    _this.cachedFilter.finalDate = null;
                     _this.getData();
                 });
                 this.signalrDataService.start();

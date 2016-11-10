@@ -14,7 +14,6 @@
             private signalrDataService: Services.ISignalrDataService
         ) {
             $scope.vm = this;
-            window['test'] = this;
             this.getData();
             this.setupSignalrConnection();
         }
@@ -23,6 +22,8 @@
             this.signalrDataService.setupConnection();
             var proxyTest = this.signalrDataService.proxy;
             proxyTest.on('announcementsUpdated', (event) => {
+                this.cachedFilter.initialDate = null;
+                this.cachedFilter.finalDate = null;
                 this.getData();
             });
             this.signalrDataService.start();

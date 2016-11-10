@@ -25,6 +25,16 @@
     }
 }
 
+var newAnnouncement = {
+    title: {
+        'validations': 'required'
+    },
+    message: {
+        'validations': 'required'
+    }
+}
+
 angularApplication.config(['validationSchemaProvider', validationSchemaProvider => {
     validationSchemaProvider.set("ReportRoadCondition", reportRoadCondition);
+    validationSchemaProvider.set("NewAnnouncement", newAnnouncement);
 }]);
