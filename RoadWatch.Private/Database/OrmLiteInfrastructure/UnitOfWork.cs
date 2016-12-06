@@ -38,10 +38,10 @@ namespace RoadWatch.Private.Database.OrmLiteInfrastructure
         public UnitOfWork(IConfigurationManagerProvider settingsProvider)
         {
             //Used for SQL Server 2012 Connection
-            //var factory = new OrmLiteConnectionFactory(settingsProvider.GetConnectionString(), new SqlServer2012OrmLiteDialectProvider());
+            var factory = new OrmLiteConnectionFactory(settingsProvider.GetConnectionString(), new SqlServer2012OrmLiteDialectProvider());
 
             //User for MySql Connection
-            var factory = new OrmLiteConnectionFactory(settingsProvider.GetConnectionString(), new MySqlDialectProvider());
+            //var factory = new OrmLiteConnectionFactory(settingsProvider.GetConnectionString(), new MySqlDialectProvider());
             _db = factory.Open();
         }
 

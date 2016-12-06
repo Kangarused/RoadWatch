@@ -21,7 +21,6 @@ namespace RoadWatch.Private.Database.Readers
 
         }
 
-
         public async Task<long> GetDatabaseVersion()
         {
             var query = Db.From<VersionInfo>().OrderByDescending(i => i.Version);

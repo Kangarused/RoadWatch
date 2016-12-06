@@ -80,8 +80,6 @@ namespace RoadWatch.Common.Model
         [Required]
         public string Name { get; set;}
         [Required]
-        public string Secret { get; set;}
-        [Required]
         public string ApplicationType { get; set;}
         [Required]
         public bool Active { get; set;}
@@ -148,7 +146,6 @@ namespace RoadWatch.Common.Model
         [References(typeof(User))]          
         [Required]
         public int UserId { get; set;}
-        public string PasswordHash { get; set;}
         public string WindowsUsername { get; set;}
     }
 

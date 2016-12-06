@@ -27,6 +27,7 @@
                     passwordNeeded: (value, scope) => {
                         return value != null || scope.vm.userAccount.provider != null;
                     }
+
                 };
 
                 var defaultMsg = {

@@ -10,8 +10,8 @@ var RoadWatch;
             }
             SignalrDataService.prototype.setupConnection = function () {
                 //Setup web-socket connection using Signalr
-                //this.connection = $.hubConnection('http://localhost:2054/signalr');
-                this.connection = $.hubConnection('http://104.196.228.226/signalr');
+                this.connection = $.hubConnection('http://localhost:2054/signalr');
+                //this.connection = $.hubConnection('http://104.196.228.226/signalr');
                 this.proxy = this.connection.createHubProxy('roadWatchHub');
             };
             SignalrDataService.prototype.start = function () {
