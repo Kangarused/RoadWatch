@@ -15,7 +15,7 @@
         ) {
             $scope.vm = this;
             this.getData();
-            this.setupSignalrConnection();
+            //this.setupSignalrConnection();
         }
 
         private setupSignalrConnection() {

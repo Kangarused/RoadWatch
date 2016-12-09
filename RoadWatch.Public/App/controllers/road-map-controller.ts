@@ -37,7 +37,7 @@
             });
 
             this.getAllMapObjects();
-            this.setupSignalrConnection();
+            //this.setupSignalrConnection();
         }
 
         private setupSignalrConnection() {

@@ -90,7 +90,6 @@ declare module RoadWatch.Models {
     export interface IUserCredential {
         id: number;
         userId: number;
-        passwordHash: string;
         windowsUsername: string;
     }
     /** Generated from RoadWatch.Common.Model.UserRole **/

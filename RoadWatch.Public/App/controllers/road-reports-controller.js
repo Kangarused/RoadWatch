@@ -27,7 +27,7 @@ var RoadWatch;
                 $scope.vm = this;
                 window['test'] = this;
                 this.getData(this.cachedFilter);
-                this.setupSignalrConnection();
+                //this.setupSignalrConnection();
             }
             RoadReportsController.prototype.pageChanged = function () {
                 this.getData(this.cachedFilter);

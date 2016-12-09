@@ -57,6 +57,7 @@
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="Run\bats\up.bat" />
     <None Include="Run\migrate.ps1" />
     <None Include="Run\rollbackAll.bat" />
     <None Include="Run\rollbackOneStep.bat" />

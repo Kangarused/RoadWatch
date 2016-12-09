@@ -1,6 +1,6 @@
 ﻿Param($action)
 
-Set-Alias migrate "..\..\packages\FluentMigrator.Tools.1.6.2\tools\x86\40\Migrate.exe"
+Set-Alias migrate "..\..\..\packages\FluentMigrator.Tools.1.6.2\tools\x86\40\Migrate.exe"
 
 
 

@@ -12,7 +12,7 @@ var RoadWatch;
                 this.searchFilterCollapsed = true;
                 $scope.vm = this;
                 this.getData();
-                this.setupSignalrConnection();
+                //this.setupSignalrConnection();
             }
             AnnouncementsController.prototype.setupSignalrConnection = function () {
                 var _this = this;

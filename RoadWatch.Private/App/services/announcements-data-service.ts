@@ -1,6 +1,6 @@
 ﻿module RoadWatch.Services {
     export interface IAnnouncementsDataService {
-        getPagedAnnouncements(filter: Models.IAnnouncementFilter): ng.IHttpPromise<Models.IPagedResponse<Models.IAnnouncement>>;
+        getPagedAnnouncements(filter: RoadWatch.Models.IAnnouncementFilter): ng.IHttpPromise<Models.IPagedResponse<Models.IAnnouncement>>;
         saveAnnouncement(announcement: Models.IAnnouncement): ng.IHttpPromise<Models.IActionResponseGeneric<string>>;
         deleteAnnouncement(announcement: Models.IAnnouncement): ng.IHttpPromise<Models.IActionResponseGeneric<string>>;
     }

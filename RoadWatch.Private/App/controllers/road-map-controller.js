@@ -145,15 +145,14 @@ var RoadWatch;
                 });
             }
             RoadMapController.prototype.setupSignalrConnection = function () {
-                var _this = this;
-                this.signalrDataService.setupConnection();
-                var proxyTest = this.signalrDataService.proxy;
-                proxyTest.on('mapUpdated', function (event) {
-                    if (_this.changedMarkers.length < 0) {
-                        _this.getAllMapObjects();
-                    }
-                });
-                this.signalrDataService.start();
+                //this.signalrDataService.setupConnection();
+                //var proxyTest = this.signalrDataService.proxy;
+                //proxyTest.on('mapUpdated', (event) => {
+                //    if (this.changedMarkers.length < 0) {
+                //        this.getAllMapObjects();
+                //    }
+                //});
+                //this.signalrDataService.start();
             };
             RoadMapController.prototype.getNextId = function () {
                 var length = this.updateCollection.collection.length;

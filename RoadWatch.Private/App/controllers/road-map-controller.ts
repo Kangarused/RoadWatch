@@ -47,14 +47,14 @@
         }
 
         private setupSignalrConnection() {
-            this.signalrDataService.setupConnection();
-            var proxyTest = this.signalrDataService.proxy;
-            proxyTest.on('mapUpdated', (event) => {
-                if (this.changedMarkers.length < 0) {
-                    this.getAllMapObjects();
-                }
-            });
-            this.signalrDataService.start();
+            //this.signalrDataService.setupConnection();
+            //var proxyTest = this.signalrDataService.proxy;
+            //proxyTest.on('mapUpdated', (event) => {
+            //    if (this.changedMarkers.length < 0) {
+            //        this.getAllMapObjects();
+            //    }
+            //});
+            //this.signalrDataService.start();
         }
 
         private getNextId(): number {

@@ -25,7 +25,7 @@ var RoadWatch;
                 };
                 $scope.vm = this;
                 this.getData(this.cachedFilter);
-                this.setupSignalrConnection();
+                //this.setupSignalrConnection();
             }
             PublicReportsController.prototype.setupSignalrConnection = function () {
                 var _this = this;

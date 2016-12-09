@@ -49,7 +49,7 @@ var RoadWatch;
                     _this.showMap = true;
                 });
                 this.getAllMapObjects();
-                this.setupSignalrConnection();
+                //this.setupSignalrConnection();
             }
             RoadMapController.prototype.setupSignalrConnection = function () {
                 var _this = this;

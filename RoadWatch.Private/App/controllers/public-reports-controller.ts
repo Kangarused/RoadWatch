@@ -20,7 +20,7 @@
         ) {
             $scope.vm = this;
             this.getData(this.cachedFilter);
-            this.setupSignalrConnection();
+            //this.setupSignalrConnection();
         }
 
         private setupSignalrConnection() {
